@@ -13,21 +13,16 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initializes an object of class BaseModel
         """
-        if len(kwargs) > 0:
-            pass
             
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-
-
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """Returns string representation of an object
         """
-        return "{[]} {()} {}"\
-                .format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".\
+            format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """updates the public instance attribute updated_at
@@ -39,4 +34,8 @@ class BaseModel:
         """returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
-        pass
+        d = self.__dict__.copy()
+        d["__class__"] = type(self).__name__
+        d["created_at"] = d["created_at"].isoformat()
+        d["updated_at"] = d["updated_at"].isoformat()
+        return d
