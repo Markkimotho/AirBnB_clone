@@ -21,8 +21,8 @@ class BaseModel:
         """Returns string representation of an object
         """
         return f"{[type(self).__name__]} ({self.id}) {self.__dict__}"
-# "[{}] ({}) {}".\
-# format(type(self).__name__, self.id, self.__dict__)
+        # "[{}] ({}) {}".\
+        # format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         """updates the public instance attribute updated_at
