@@ -1,3 +1,5 @@
+![](https://github.com/Markkimotho/AirBnB_clone/blob/master/Images/hbnb.png)
+
 # AirBnB clone
 The goal of the project is to deploy on our server, a simple copy of the AirBnB website.
 We won’t implement all the features, only some of them to cover all fundamental concepts of the higher level programming track.
