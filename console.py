@@ -12,7 +12,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, line):
         """ Quits the Terminal """
-        sys.exit()
+        return True
+        # sys.exit()
 
     def do_EOF(self, line):
         """ Defines the EOF:
@@ -24,12 +25,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         pass
+
     def show(self, line):
         pass
 
-    def destroy(self, line)
-    def all(self, line)
-    def update(self, line)
+    def destroy(self, line):
+        pass
+
+    def all(self, line):
+        pass
+
+    def update(self, line):
+        pass
 
 
 if __name__ == '__main__':
