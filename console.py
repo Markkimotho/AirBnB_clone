@@ -2,20 +2,23 @@
 
 """ Module that for creating our CLI for the AirBnB Clone App"""
 import cmd
-import os
-
+import sys
+from models import storage
+from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand
     """
     prompt = '(hbnb) '
+    
 
-    def do_quit(self, line):
+    is_classes = ["BaseModel", "User"]
+
+    def do_quit(self, arg):
         """ Quits the Terminal """
-        return True
-        # sys.exit()
+        sys.exit()
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         """ Defines the EOF:
         ->End of The Program
         ->Quits The Program/Terminal
@@ -23,19 +26,27 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def do_create(self, line):
+    def emptyline(self):
+        """ Nothing is executed on  emptyline+ENTER """
+        pass
+        
+    def do_create(self, arg):
+        """ Creates new instance of class BaseModel """
+        if arg == "" or arg is None:
+            print("** class name is missing **")
+        elif arg not in HBNBCommand.is_classes:
+            print("** class doesn't exist **")
+            return
+    def show(self, arg):
         pass
 
-    def show(self, line):
+    def destroy(self, arg):
         pass
 
-    def destroy(self, line):
+    def all(self, arg):
         pass
 
-    def all(self, line):
-        pass
-
-    def update(self, line):
+    def update(self, arg):
         pass
 
 
