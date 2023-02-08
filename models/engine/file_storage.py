@@ -24,20 +24,32 @@ class FileStorage:
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """ serializes __objects to the JSON file (path: __file_path) """
+        """ serializes __objects to the JSON file (path: __file_path)
+            Description:
+        """
 
-        with open(FileStorage.__file_path, 'w', encoding="utf-8") as json_file:
-            objects = {key: value.to_dict()
-                       for key, value in FileStorage.__objects.items()}
-            json.dump(objects, json_file)
+        store = {}
+        for key in FileStorage.__objects.keys():
+            store[key] = FileStorage.__objects[key].to_dict()
+
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as json_file:
+            json_file.write(json.dumps(store))
 
     def reload(self):
         """ deserializes the JSON file to __objects
             if the JSON file (__file_path) exists ; otherwise, do nothing
         """
-        if exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r', encoding="utf-8")as obj_file:
-                obj_dict = json.load(obj_file)
-                obj_dict = {key: self.classes()[value["__class__"]](**value)
-                            for key, value in obj_dict.items()}
-                FileStorage.__objects = obj_dict
+        try:
+            with open(FileStorage.__file_path,
+                      "r+", encoding="utf-8") as obj_file:
+                FileStorage.__objects = {}
+                temp = json.load(obj_file)
+                for key in temp.keys():
+                    cls = temp[key].pop("__class__", None)
+                    cr_at = temp[key]["created_at"]
+                    cr_at = datetime.strptime(cr_at, "%Y-%m-%d %H:%M:%S.%f")
+                    up_at = temp[key]["updated_at"]
+                    up_at = datetime.strptime(up_at, "%Y-%m-%d %H:%M:%S.%f")
+                    FileStorage.__objects[key] = eval(cls)(temp[key])
+        except Exception as e:
+            pass

@@ -2,7 +2,7 @@
 
 from datetime import datetime
 import uuid
-from models.__init__ import storage
+from models import storage
 
 """ A module that defines the "BaseModel" class """
 

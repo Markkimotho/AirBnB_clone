@@ -22,6 +22,15 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
+    def do_create(self, line):
+        pass
+    def show(self, line):
+        pass
+
+    def destroy(self, line)
+    def all(self, line)
+    def update(self, line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
