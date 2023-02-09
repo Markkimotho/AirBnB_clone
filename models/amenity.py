@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ A module with class Amenity that inherits from BaseModel """
 
-from  models.base_model import BaseModel 
+from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
