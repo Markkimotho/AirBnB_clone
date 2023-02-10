@@ -56,12 +56,14 @@ class HBNBCommand(cmd.Cmd):
                 print(" ** instance id missing ** ")
                 return
             else:
-                #SEARCHING USING ID INSTANCE
+                #SEARCHING USING CLASS NAME & ID INSTANCE
                 key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
                     print(" ** no instance found ** ")
                 else:
                     print(storage.all()[key])
+
+                    
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id 
@@ -91,10 +93,9 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
         based or not on the class name.
         """
-
         # THE STRING REPRESENTATION OF ALL INSTANCES.
         if arg == "":
-            all_list = [str(value)
+            all_list = [(str(value))
                         for key, value in storage.all().items()]
             print(all_list)
         else:

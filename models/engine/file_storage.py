@@ -7,10 +7,12 @@ from os.path import exists
 
 class FileStorage:
     """ class FileStorage that:
-    ->serializes instances to a JSON file and
-    ->deserializes JSON file to instances
+            ->serializes instances to a JSON file and
+            ->deserializes JSON file to instances
+        Description:
+              Class that helps to store and retrieve data
     """
-    __file_path = "file.path"
+    __file_path = "file.json"
     __objects = {}
     
     def classes(self):
