@@ -73,5 +73,6 @@ class FileStorage:
                 dict_obj = {key: self.classes()[value["__class__"]](**value)
                        for key, value in dict_obj.items()}
 #               print(dict_obj) #For Testing
+            FileStorage.__objects = dict_obj
         else:
             return
