@@ -69,10 +69,8 @@ class FileStorage:
         if file_exists:
             with open(FileStorage.__file_path, "r+", encoding="utf-8") as json_file:
                 dict_obj = json.load(json_file)
-#               print(dict_obj) #For Testing
                 dict_obj = {key: self.classes()[value["__class__"]](**value)
                        for key, value in dict_obj.items()}
-#               print(dict_obj) #For Testing
             FileStorage.__objects = dict_obj
         else:
             return
