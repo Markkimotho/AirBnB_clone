@@ -8,7 +8,3 @@ class City(BaseModel):
     """ class Review that manages all its instances """
     state_id = ""
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """ Initializes an intance of City """
-        super().__init__(*args, **kwargs)
