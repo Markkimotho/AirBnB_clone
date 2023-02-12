@@ -113,18 +113,19 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file)
         """
+        args = arg.split(" ")
+        key = f"{args[0]}.{args[1]}"
         if arg == "" or arg is None:
             print("** class name missing **")
             return
         else:
-            args = arg.split(" ")
             if args[0] not in storage.classes():
                 print("** class doesn't exist **")
                 return
             elif len(args) == 1:
                 print("** instance id missing **")
                 return
-            elif args[0] + "." + args[1] not in storage.classes():
+            elif key not in storage.all():
                 print("** no instance found **")
             elif len(args) == 2:
                 print("** attribute name missing **")
@@ -132,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
             elif len(args) == 3:
                 print("** value missing **")
             elif len(args) == 4:
-                key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
                     print("** no instance found **")
                     return
