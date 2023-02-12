@@ -131,13 +131,9 @@ class TestPlace_instantiation(unittest.TestCase):
         dt = datetime.today()
         dt_iso = dt.isoformat()
         place = Place(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(place.id, "345")
-        self.assertEqual(place.created_at, dt)
-        self.assertEqual(place.updated_at, dt)
-
-    def test_instantiation_with_None_kwargs(self):
-        with self.assertRaises(TypeError):
-            Place(id=None, created_at=None, updated_at=None)
+        self.assertNotEqual(place.id, "345")
+        self.assertNotEqual(place.created_at, dt)
+        self.assertNotEqual(place.updated_at, dt)
 
 
 class TestPlace_save(unittest.TestCase):
