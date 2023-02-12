@@ -14,7 +14,7 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-    
+
     def classes(self):
         """Returns a dictionary of valid classes
         along with their references
@@ -55,7 +55,7 @@ class FileStorage:
         """
         with open(FileStorage.__file_path, "w", encoding="utf-8") as json_file:
             dict_obj = {key: value.to_dict()
-                  for key, value in FileStorage.__objects.items()}
+                        for key, value in FileStorage.__objects.items()}
             json.dump(dict_obj, json_file)
 
     def reload(self):
@@ -67,10 +67,11 @@ class FileStorage:
         """
         file_exists = exists(FileStorage.__file_path)
         if file_exists:
-            with open(FileStorage.__file_path, "r+", encoding="utf-8") as json_file:
+            with open(FileStorage.__file_path,
+                      "r+", encoding="utf-8") as json_file:
                 dict_obj = json.load(json_file)
                 dict_obj = {key: self.classes()[value["__class__"]](**value)
-                       for key, value in dict_obj.items()}
+                            for key, value in dict_obj.items()}
             FileStorage.__objects = dict_obj
         else:
             return

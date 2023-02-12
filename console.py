@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """class HBNBCommand
     """
     prompt = '(hbnb) '
-    
+
     def do_quit(self, arg):
         """ Quits the Terminal """
         sys.exit()
@@ -27,13 +27,13 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ Nothing is executed on  emptyline+ENTER """
         pass
-        
+
     def do_create(self, arg):
         """ Creates new instance of class BaseModel """
         if arg == "" or arg is None:
             print("** class name is missing **")
             return
-        elif arg not in storage.classes(): 
+        elif arg not in storage.classes():
             print("** class doesn't exist **")
             return
         else:
@@ -44,7 +44,9 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, arg):
-        """ Prints the string representation of an instance based on the class name and id. """
+        """ Prints the string representation of an instance
+        based on the class name and id.
+        """
         if arg == "" or arg is None:
             print("** class name is missing **")
         else:
@@ -56,17 +58,15 @@ class HBNBCommand(cmd.Cmd):
                 print(" ** instance id missing ** ")
                 return
             else:
-                #SEARCHING USING CLASS NAME & ID INSTANCE
+                # SEARCHING USING CLASS NAME & ID INSTANCE
                 key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
                     print(" ** no instance found ** ")
                 else:
                     print(storage.all()[key])
 
-                    
-
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id 
+        """Deletes an instance based on the class name and id
         (save the change into the JSON file)
         """
         if arg == "" or arg is None:
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 print(" ** instance id missing ** ")
                 return
             else:
-                #SEARCHING AND DELETING USING ID INSTANCE
+                # SEARCHING AND DELETING USING ID INSTANCE
                 key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
                     print(" ** no instance found **")
@@ -121,32 +121,24 @@ class HBNBCommand(cmd.Cmd):
             if args[0] not in storage.classes():
                 print("** class name doesn't exist **")
                 return
-            if len(args) == 1:
+            elif len(args) == 1:
                 print("** instance id missing **")
                 return
-            if len(args) == 2:
+            elif len(args) == 2:
                 print("** attribute name missing **")
                 return
-            if len(args) == 3:
+            elif len(args) == 3:
                 print("** value missing **")
+            elif len(args) == 4:
+                key = f"{args[0]}.{args[1]}"
+                if key not in storage.all():
+                    print("** no instance found **")
+                    return
+                else:
+                    setattr(storage.all()[key], args[2], args[3])
+                    storage.save()
+                    return
 
-            key = f"{args[0]}.{args[1]}"
-            if key not in storage.all().keys():
-                print("** no instance found **")
-                return
-            else:
-                for key in storage.all():
-                    print(storage.all()[key])
-                    print()
-                    print(storage.all()[key].to_dict())
-                    print()
-                    for k, v in storage.all()[key].to_dict().items():
-                        print(k,":",v)
-                    print()
-                    storage.all()[key].to_dict()["name"] = "Mark"
-                    storage.save
-                    for i, j in storage.all()[key].to_dict().items():
-                        print(i,":",j)
-                        
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

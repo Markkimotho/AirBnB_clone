@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
-from datetime import datetime
-import uuid
-from models import storage
-
 """ A module that defines the "BaseModel" class """
+
+import uuid
+from datetime import datetime
+from models import storage
 
 
 class BaseModel:
