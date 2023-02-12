@@ -20,4 +20,4 @@ class Place(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """ Initializes an instance of Place """
-        super().__init__()
+        super().__init__(*args, **kwargs)
