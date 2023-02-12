@@ -55,13 +55,13 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             if len(args) == 1:
-                print(" ** instance id missing ** ")
+                print("** instance id missing **")
                 return
             else:
                 # SEARCHING USING CLASS NAME & ID INSTANCE
                 key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
-                    print(" ** no instance found ** ")
+                    print("** no instance found **")
                 else:
                     print(storage.all()[key])
 
@@ -70,21 +70,21 @@ class HBNBCommand(cmd.Cmd):
         (save the change into the JSON file)
         """
         if arg == "" or arg is None:
-            print(" ** class name missing ** ")
+            print("** class name missing **")
             return
         else:
             args = arg.split()
             if args[0] not in storage.classes():
-                print(" **class name doesn't exist** ")
+                print("**class name doesn't exist**")
                 return
             if len(args) == 1:
-                print(" ** instance id missing ** ")
+                print("** instance id missing **")
                 return
             else:
                 # SEARCHING AND DELETING USING ID INSTANCE
                 key = f"{args[0]}.{args[1]}"
                 if key not in storage.all():
-                    print(" ** no instance found **")
+                    print("** no instance found **")
                 else:
                     del storage.all()[key]
                     storage.save()
@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = arg.split()
             if args[0] not in storage.classes():
-                print(" ** class doesn't exist ** ")
+                print("** class doesn't exist **")
                 return
             else:
                 class_list = [str(value)
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                     return
                 else:
-                    setattr(storage.all()[key], args[2], args[3])
+                    setattr(storage.all()[key], args[2], args[3].strip('\"'))
                     storage.save()
                     return
 
