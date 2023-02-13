@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ Creates new instance of class BaseModel """
         if arg == "" or arg is None:
-            print("** class name is missing **")
+            print("** class name missing **")
             return
         elif arg not in storage.classes():
             print("** class doesn't exist **")
@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id.
         """
         if arg == "" or arg is None:
-            print("** class name is missing **")
+            print("** class name missing **")
         else:
             args = arg.split()
             if args[0] not in storage.classes():
