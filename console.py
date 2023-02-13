@@ -141,6 +141,125 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     return
 
+    # <class name>.action()
+
+    def do_User(self, arg):
+        """Mode Of Operation:
+        User.all() - displays all objects of class User
+        User.count() - displays number of objects of class User
+        User.show(<id>) - displays object of class User with id
+        User.destroy(<id>) - deletes object of class User with id
+        User.update(<id>, <attribute name>, <attribute value>) - update User
+        User.update(<id>, <dictionary representation>) - update User
+        """
+        self.class_helper('User', arg)
+
+    def do_BaseModel(self, arg):
+        """Mode Of Operation:
+        BaseModel.all() - displays all objects of class BaseModel
+        BaseModel.count() - displays number of objects of class BaseModel
+        BaseModel.show(<id>) - displays object of class BaseModel with id
+        BaseModel.destroy(<id>) - deletes object of class BaseModel with id
+        BaseModel.update(<id>, <attribute name>, <attribute value>) - update
+        BaseModel.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('BaseModel', arg)
+
+    def do_State(self, arg):
+        """Mode Of Operation:
+        State.all() - displays all objects of class State
+        State.count() - displays number of objects of class State
+        State.show(<id>) - displays object of class State with id
+        State.destroy(<id>) - deletes object of class BaseModel with id
+        State.update(<id>, <attribute name>, <attribute value>) - update
+        State.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('State', arg)
+
+    def do_City(self, arg):
+        """Mode Of Operation:
+        City.all() - displays all objects of class City
+        City.count() - displays number of objects of class City
+        City.show(<id>) - displays object of class City with id
+        City.destroy(<id>) - deletes object of class City with id
+        City.update(<id>, <attribute name>, <attribute value>) - update
+        City.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('City', arg)
+
+    def do_Amenity(self, arg):
+        """Mode Of Operation:
+        Amenity.all() - displays all objects of class Amenity
+        Amenity.count() - displays number of objects of class Amenity
+        Amenity.show(<id>) - displays object of class Amenity with id
+        Amenity.destroy(<id>) - deletes object of class Amenity with id
+        Amenity.update(<id>, <attribute name>, <attribute value>) - update
+        Amenity.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('Amenity', arg)
+
+    def do_Place(self, arg):
+        """Mode Of Operation:
+        Place.all() - displays all objects of class Place
+        Place.count() - displays number of objects of class Place
+        Place.show(<id>) - displays object of class Place with id
+        Place.destroy(<id>) - deletes object of class Place with id
+        Place.update(<id>, <attribute name>, <attribute value>) - update
+        Place.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('Place', arg)
+
+    def do_Review(self, arg):
+        """Mode Of Operation:
+        Review.all() - displays all objects of class Review
+        Review.count() - displays number of objects of class Review
+        Review.show(<id>) - displays object of class Review with id
+        Review.destroy(<id>) - deletes object of class Review with id
+        Review.update(<id>, <attribute name>, <attribute value>) - update
+        Review.update(<id>, <dictionary representation>) - update
+        """
+        self.class_helper('Review', arg)
+
+    def class_helper(self, class_name, arg):
+        """ helper function for the section <class name>.action """
+
+        if arg == '.all()':
+            self.do_all(class_name)
+        elif arg == '.count()':
+            count = 0
+            for key in storage.all().keys():
+                count += 1
+            print(count)
+        elif arg[:6] == '.show(':
+            self.do_show(class_name + ' ' + arg[7:-2])
+        elif arg[:9] == '.destroy(':
+            self.do_destroy(class_name + ' ' + arg[10:-2])
+        elif arg[:8] == '.update(':
+            if '{' in arg and '}' in arg:
+                new_arg = arg[8:-1].split('{')
+                new_arg[1] = '{' + new_arg[1]
+            else:
+                new_arg = arg[8:-1].split(',')
+            if len(new_arg) == 3:
+                new_arg = " ".join(new_arg)
+                new_arg = new_arg.replace("\"", "")
+                new_arg = new_arg.replace("  ", " ")
+                self.do_update(class_name + ' ' + new_arg)
+            elif len(new_arg) == 2:
+                try:
+                    dict = eval(new_arg[1])
+                except Exception:
+                    return
+                for j in dict.keys():
+                    self.do_update(class_name + ' ' +
+                                   new_arg[0][1:-3]
+                                   + ' ' + str(j) +
+                                   ' ' + str(dict[j]))
+            else:
+                return
+        else:
+            print("Not a valid command")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
