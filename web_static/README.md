@@ -2,6 +2,9 @@
 
 We have created a command interpreter for the Airbnb projects, and now its time to give the website a face and make it alive.
 
+## Description
+
+
 ## Goals
 
 * Create simple HTML static pages
