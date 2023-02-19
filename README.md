@@ -12,7 +12,7 @@ The final product will have a complete web application composed of:
 * An API that provides a communication interface between the front-end and your data (retrieve, create, delete, update them)
 
 ## The Command Interpreter 
-AKA The Console will be able to:
+The Console we'll create will be able to:
 * create our data model
 * manage (create, update, destroy, etc) objects via a console / command interpreter
 * store and persist objects to a file (JSON file)
@@ -21,6 +21,18 @@ The first piece is to manipulate a powerful storage system. This storage engine 
 This abstraction will also allow us to change the type of storage easily without updating all of our codebase.
 
 The console will be a tool to validate this storage engine
+
+## The Website 
+
+### Web Static 
+We will create a static web page that uses HTML & CSS
+** Goals: **
+* create the HTML of your application
+* create template of each object
+
+### Web framework - templating
+### Web dynamic
+
 
 ### How to start it 
 
